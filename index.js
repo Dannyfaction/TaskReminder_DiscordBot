@@ -1,3 +1,14 @@
+const express = require('express')
+const path = require('path')
+const PORT = process.env.PORT || 5000
+
+express()
+  .use(express.static(path.join(__dirname, 'public')))
+  .set('views', path.join(__dirname, 'views'))
+  .set('view engine', 'ejs')
+  .get('/', (req, res) => res.render('pages/index'))
+  .listen(PORT, () => console.log(`Listening on ${ PORT }`))
+
 const Discord = require('discord.js');
 const client = new Discord.Client();
 
@@ -9,7 +20,7 @@ client.on('message', msg => {
   msg.reply('pong');
 });
 
-client.login('OTI1NTI2MjYzMjk5NDczNDg4.YcuZgA.a5qVEYXCd-F5oWq-pUsgW4-ff0Y');
+client.login('token');
 
 const prefix = `!`;
 client.on("message", function (message) {
